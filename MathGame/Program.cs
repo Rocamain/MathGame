@@ -1,2 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World! I am creating my first C# Console App");
+using MathGame;
+
+var menu = new Menu();
+
+menu.Show();
