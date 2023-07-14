@@ -6,14 +6,16 @@ namespace MathGame
 {
     internal class Menu
     {
-        internal void Show()
+        internal void Show( string name)
         {
             
             Console.WriteLine("\n");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine($" Hello {name}, Good Luck!");
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
             Console.ForegroundColor = ConsoleColor.Green;
-
+            
 
             Console.WriteLine($@"
      What game would you like to play today?
