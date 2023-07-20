@@ -1,14 +1,11 @@
-﻿
+﻿using MathGame.Models;
 
-using MathGame.Models;
-using System.Reflection;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MathGame
 {
     internal class Menu
     {
-
+        GameEngine gameEngine = new GameEngine();
         internal void Show(string name, DateTime date)
         {
             Console.WriteLine("\n");
@@ -36,17 +33,19 @@ namespace MathGame
      D - Division
      Q - Quit the program"
      );
+                string option = "";
                 Console.Write($@"
-     Option: "
+     Option:{ option.ToUpper()}"
 );
                 Console.ForegroundColor = ConsoleColor.Blue;
-                var gameSelected = Console.ReadLine().Trim().ToLower();
+                option = Console.ReadLine().Trim().ToLower();
                 Console.ForegroundColor = ConsoleColor.Green;
 
                 
                 GameDifficulty difficulty;
+                GameType gameType; ;
 
-                switch (gameSelected)
+                switch (option)
                 {
                     case "v":
 
@@ -54,26 +53,34 @@ namespace MathGame
                     case "a":
                         
                         difficulty = ChooseDifficulty();
+                        gameType = Models.GameType.Addition;
+                        gameEngine.StartGame(gameType, difficulty, '+');
 
                         break;
                     case "s":
-                        
+
                         difficulty = ChooseDifficulty();
+                        gameType = Models.GameType.Substraction;
+                        gameEngine.StartGame(gameType, difficulty, '-');
 
                         break;
                     case "m":
-                        
+
                         difficulty = ChooseDifficulty();
+                        gameType = Models.GameType.Multiplication;
+                        gameEngine.StartGame(gameType, difficulty, '*');
 
                         break;
                     case "d":
-                        ;
+                        
                         difficulty = ChooseDifficulty();
+                        gameType = Models.GameType.Division;
+                        gameEngine.StartGame(gameType, difficulty, '/');
 
                         break;
                     case "q":
-                        
-                        Console.WriteLine("Goodbye !");
+                        Console.Clear();
+                        Console.WriteLine(" Goodbye !");
                         Console.ReadLine();
                         isGameOn = false;
                         break;
@@ -81,6 +88,7 @@ namespace MathGame
                         Console.Clear();
                         Console.WriteLine("Invalid input, press any key to go back in the menu.");
                         Console.ReadLine();
+                        
                         break;
                 }
                 Console.Clear();
