@@ -8,12 +8,10 @@ namespace MathGame
         GameEngine gameEngine = new GameEngine();
         internal void Show(string name, DateTime date)
         {
-            Console.WriteLine("\n");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine($" Hello {name}, it's {date.DayOfWeek}'s!!! your lucky day!!!");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"\n\tHello {name}, it's {date.DayOfWeek}'s!!! your lucky day!!!\n");
           
-            ShowGames();
-                       
+            ShowGames();         
         }
 
         internal void ShowGames()
@@ -21,34 +19,29 @@ namespace MathGame
 
             var isGameOn = true;
             do {
-
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($@"
-     What game would you like to play today?
-     
-     V - View Previous Games
-     A - Addition
-     S - Substraction
-     M - Multiplication
-     D - Division
-     Q - Quit the program"
-     );
-                string option = "";
-                Console.Write($@"
-     Option:{ option.ToUpper()}"
-);
-                Console.ForegroundColor = ConsoleColor.Blue;
-                option = Console.ReadLine().Trim().ToLower();
-                Console.ForegroundColor = ConsoleColor.Green;
-
+                Console.WriteLine("\tWhat game would you like to play today?\n\n" + 
+                    "\tV - View Previous Games\n" +
+                    "\tA - Addition\n" +
+                    "\tS - Substraction\n" +
+                    "\tM - Multiplication\n" +
+                    "\tD - Division\n" +
+                    "\tQ - Quit the program\n"                     
+                    );
                 
+                Console.Write($"\tOption: ");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                var option = Console.ReadLine().Trim().ToLower();
+                Console.ForegroundColor = ConsoleColor.Green;
+                                
                 GameDifficulty difficulty;
-                GameType gameType; ;
+                GameType gameType;
+                
 
                 switch (option)
                 {
                     case "v":
-
+                        Helpers.GetGames();
                         break;
                     case "a":
                         
@@ -86,7 +79,7 @@ namespace MathGame
                         break;
                     default:
                         Console.Clear();
-                        Console.WriteLine("Invalid input, press any key to go back in the menu.");
+                        Console.Write("\n\tInvalid input, press any key to go back in the menu.");
                         Console.ReadLine();
                         
                         break;
@@ -105,16 +98,13 @@ namespace MathGame
             do
             {
                 Console.Clear();
-             
-                Console.WriteLine($@"
-     Choose a difficulty:
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\n\tChoose a difficulty:\n\n" +
+                                 "\tE - Easy\n" +
+                                 "\tM - Medium\n" +
+                                 "\tH - Hard\n");
 
-     E - Easy
-     M - Medium
-     H - Hard");
-
-                Console.Write($@"
-     Option: ");
+                Console.Write($"\tOption: ");
                 Console.ForegroundColor = ConsoleColor.Blue;
                 var gameDifficulty = Console.ReadLine().ToLower().Trim();
 
@@ -134,7 +124,8 @@ namespace MathGame
                         break;
                     default:
                         Console.Clear();
-                        Console.WriteLine("Invalid input, press any key to go back in the menu.");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("\n\tInvalid input, press any key to go back in the menu.");
                         Console.ReadLine();
                         break;
                 }

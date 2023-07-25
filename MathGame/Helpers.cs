@@ -4,8 +4,9 @@ using MathGame.Models;
 namespace MathGame
 {
     internal class Helpers
-
     {
+        const string scoresPath = @"C:\mathGame\scores.txt";
+        const string gameDirectory = @"C:\mathGame";
 
         internal static List<Game> games = new();
 
@@ -13,102 +14,62 @@ namespace MathGame
         {
             Console.Clear();
             Console.WriteLine("Games history:");
-           
         }
-        internal static string GetName()
+
+        internal static void AddToHistory(int gameScore, GameType gameType, GameDifficulty gameDificulty)
         {
             
+        }
+
+        /// <summary>
+        /// render a screen asking for player name and return it
+        /// </summary>
+        /// <returns>Player Name</returns>
+        internal static string GetName()
+        {
             var askName = () => {
-                Console.Clear();
-                Console.WriteLine("\n");
+                Console.Clear();                
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(" Wellcome to the Math challenge game!!!");
-                Console.Write("\n What's your name? ");
+
+                Console.WriteLine("\n\tWellcome to the Math challenge game!!!");
+                Console.Write("\n\tWhat's your name? ");
+
                 Console.ForegroundColor = ConsoleColor.Blue;
+                
                 string name = Console.ReadLine();
                 
                 if (name != null)
                 {
-
                    name =  name.Trim();
-                    
-                   return name.Length > 0 ? name : null;
-                    
+                    return name.Length > 0 ? name : null;    
                 }
+
                  return null;
-                
             };
-            string name = askName();
-            
-                        
+            string name = askName();          
 
             while (string.IsNullOrEmpty(name)) {
 
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(" Name cannot be empty. type to continue");
-                name = Console.ReadLine();
+                Console.WriteLine("\tName cannot be empty. type to continue");
+                Console.ReadKey();
                 name = askName();
-                
             }
 
             Console.Clear();
             return name;
         }
 
-        internal static bool ValidateResult(string result)
+        /// <summary>
+        /// Make the valiadtion for the string passed is a integer
+        /// </summary>
+        /// <param name="userAnswer"></param>
+        /// <returns> boolean  </returns>
+        internal static bool IsValidateAnswer(string userAnswer)
         {
-            if (string.IsNullOrEmpty(result) || !int.TryParse(result, out _))
-            {
-                
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-            
+            bool isValid = string.IsNullOrEmpty(userAnswer) || !int.TryParse(userAnswer, out _)? false: true;
+
+            return isValid;
         }
-
-        internal static  void  RenderOperation ((int FirstInt, int SecondInt) numbers, ref string  userAnswer, int round , char symbolOperator)
-        {
-            bool validate = false;
-            do
-            {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($@"
-     Addition Game! round {round + 1 }/5");
-                Console.Write($@"
-     {numbers.FirstInt} {symbolOperator} {numbers.SecondInt} = ");
-                Console.ForegroundColor = ConsoleColor.Blue;
-
-                userAnswer = Console.ReadLine();
-
-                if (!ValidateResult(userAnswer))
-                {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine($@"
-
-     Your answer must be an integer.");
-                    validate = false;
-                    Console.ReadKey();
-
-                }
-                else
-                {
-                    validate = true;
-
-
-                    
-                }
-
-              
-
-
-            } while (validate == false);
-
-        }
-    }
-
-    
+    }    
 }
