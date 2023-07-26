@@ -1,28 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
+
+// With serialization you can store the state 
+// of an object in a file stream, pass it to
+// a remote network
 
 namespace MathGame.Models
 {
+    // Defines that you want to serialize this class
     [Serializable()]
-
     public class Game : ISerializable
     {
-        internal string Player { get; set; }
-        internal DateTime Date { get; set; }
-        internal byte Score { get; set; }
-        internal GameType GameType { get; set; }
-        internal GameDifficulty GameDifficulty { get; set; }
-        internal char OperationSymbol {get; set;}
+        public string Player { get; set; }
+        public DateTime Date { get; set; }
+        public byte Score { get; set; }
 
+        public GameType GameType { get; set; }
+        public GameDifficulty GameDifficulty { get; set; }
+        public string OperationSymbol { get; set; }
 
-    public Game() { }
+        public Game() { }
 
-        internal Game(string player, GameType gameType, GameDifficulty gameDifficulty, char operationSymbol)
+        public Game(string player, GameType gameType, GameDifficulty gameDifficulty, string operationSymbol)
         {
             Player = player;
             Date = DateTime.Now;
@@ -31,10 +29,10 @@ namespace MathGame.Models
             GameDifficulty = gameDifficulty;
             OperationSymbol = operationSymbol;
         }
-
+        
         public override string ToString()
         {
-            return string.Format("{0} - {1} - {2} - {3} - {4} : {5} Pts ", Player, Date, GameDifficulty, GameType, Score);
+            return string.Format("Player: {0} Date: {1} Level: {2} Type: {3} Points: {4}", Player, Date, GameDifficulty, GameType, Score);
         }
 
         // Serialization function (Stores Object Data in File)
@@ -48,6 +46,7 @@ namespace MathGame.Models
             info.AddValue("Score", Score);
             info.AddValue("GameType", GameType);
             info.AddValue("GameDifficulty", GameDifficulty);
+         
         }
 
         // The deserialize function (Removes Object Data from File)
@@ -62,22 +61,17 @@ namespace MathGame.Models
         }
     }
 
-    internal enum GameType
+    public enum GameType
     {
         Addition,
         Substraction,
         Multiplication,
         Division
     }
-
-    internal enum GameDifficulty
+    public enum GameDifficulty
     {
         Easy,
         Medium,
         Hard
     }
 }
-
-
-
-
