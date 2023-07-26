@@ -6,9 +6,6 @@ namespace MathGame
     internal class Menu
     {
         GameEngine gameEngine = new GameEngine();
-        
-
-
         internal void Show(string name, DateTime date)
         {
             Console.ForegroundColor = ConsoleColor.Green;

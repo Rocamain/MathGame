@@ -9,7 +9,7 @@ namespace MathGame
         internal void StartGame (GameType gameType , GameDifficulty gameDifficulty, char operationSymbol, string player ) {
             
             Game currentGame = new Game(player, gameType, gameDifficulty, operationSymbol);
-
+          
             for (var round = 0; round < 5; round++)
             {
                 RenderOperation( round, currentGame);
