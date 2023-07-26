@@ -6,15 +6,18 @@ namespace MathGame
     internal class Menu
     {
         GameEngine gameEngine = new GameEngine();
+        
+
+
         internal void Show(string name, DateTime date)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"\n\tHello {name}, it's {date.DayOfWeek}'s!!! your lucky day!!!\n");
-          
-            ShowGames();         
+            
+            ShowGames(name);         
         }
 
-        internal void ShowGames()
+        internal void ShowGames(string player)
         {
 
             var isGameOn = true;
@@ -34,7 +37,7 @@ namespace MathGame
                 var option = Console.ReadLine().Trim().ToLower();
                 Console.ForegroundColor = ConsoleColor.Green;
                                 
-                GameDifficulty difficulty;
+                GameDifficulty gameDifficulty;
                 GameType gameType;
                 
 
@@ -44,31 +47,31 @@ namespace MathGame
                         Helpers.GetGames();
                         break;
                     case "a":
-                        
-                        difficulty = ChooseDifficulty();
+
+                        gameDifficulty = ChooseDifficulty();
                         gameType = Models.GameType.Addition;
-                        gameEngine.StartGame(gameType, difficulty, '+');
+                        gameEngine.StartGame(gameType, gameDifficulty, '+', player);
 
                         break;
                     case "s":
 
-                        difficulty = ChooseDifficulty();
+                        gameDifficulty = ChooseDifficulty();
                         gameType = Models.GameType.Substraction;
-                        gameEngine.StartGame(gameType, difficulty, '-');
+                        gameEngine.StartGame(gameType, gameDifficulty, '-', player);
 
                         break;
                     case "m":
 
-                        difficulty = ChooseDifficulty();
+                        gameDifficulty = ChooseDifficulty();
                         gameType = Models.GameType.Multiplication;
-                        gameEngine.StartGame(gameType, difficulty, '*');
+                        gameEngine.StartGame(gameType, gameDifficulty, '*', player);
 
                         break;
                     case "d":
-                        
-                        difficulty = ChooseDifficulty();
+
+                        gameDifficulty = ChooseDifficulty();
                         gameType = Models.GameType.Division;
-                        gameEngine.StartGame(gameType, difficulty, '/');
+                        gameEngine.StartGame(gameType, gameDifficulty, '/', player);
 
                         break;
                     case "q":

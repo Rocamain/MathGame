@@ -1,5 +1,9 @@
 ﻿
 using MathGame.Models;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
+
 
 namespace MathGame
 {
@@ -47,7 +51,8 @@ namespace MathGame
                  return null;
             };
             string name = askName();          
-
+            
+            // is name is empty or null display message and ask agin for the name
             while (string.IsNullOrEmpty(name)) {
 
                 Console.ForegroundColor = ConsoleColor.Green;

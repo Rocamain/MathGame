@@ -6,8 +6,6 @@ namespace MathGame
 {
     internal class GameEngine
     {
-        
-
         internal void StartGame (GameType gameType , GameDifficulty gameDifficulty, char operationSymbol, string player ) {
             
             Game currentGame = new Game(player, gameType, gameDifficulty, operationSymbol);
