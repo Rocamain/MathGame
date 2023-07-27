@@ -1,27 +1,22 @@
 ﻿using MathGame.Models;
-using static System.Formats.Asn1.AsnWriter;
-using System.Security.AccessControl;
 
 namespace MathGame
 {
     internal class GameEngine
     {
-        internal void StartGame (GameType gameType , GameDifficulty gameDifficulty, char operationSymbol, string player ) {
+        internal void StartGame (GameType gameType , GameDifficulty gameDifficulty, string operationSymbol, string player ) {
             
-            Game currentGame = new Game(player, gameType, gameDifficulty, operationSymbol);
+            Game? currentGame = new Game(player, gameType, gameDifficulty, operationSymbol);
           
             for (var round = 0; round < 5; round++)
             {
                 RenderOperation( round, currentGame);
-
-                if(round == 4) {
-                    // pending implmentation
-                    
-                    Console.WriteLine("Final Score: {0}", currentGame.Score);
-                    Console.ReadKey();
-                  //  Helpers.AddToHistory(gameScore, operation, difficulty);
-                }
-            }    
+            }
+            
+            Console.WriteLine("\n\tGame finshed, Score: {0} Pts", currentGame.Score);
+            Console.WriteLine("\n\tPress any key to comeback to Menu");
+            Console.ReadLine();
+            Helpers.SaveGameRecord(ref currentGame);
         }
 
         /// <summary>
