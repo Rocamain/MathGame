@@ -1,6 +1,5 @@
 ﻿using MathGame.Models;
 
-
 namespace MathGame
 {
     internal class Menu
@@ -20,7 +19,7 @@ namespace MathGame
             var isGameOn = true;
             do {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("\tWhat game would you like to play today?\n\n" + 
+                Console.WriteLine("\n\tWhat game would you like to play today?\n\n" + 
                     "\tV - View Previous Games\n" +
                     "\tA - Addition\n" +
                     "\tS - Substraction\n" +
@@ -46,29 +45,29 @@ namespace MathGame
                     case "a":
 
                         gameDifficulty = ChooseDifficulty();
-                        gameType = Models.GameType.Addition;
-                        gameEngine.StartGame(gameType, gameDifficulty, '+', player);
+                        gameType = GameType.Addition;
+                        gameEngine.StartGame(gameType, gameDifficulty, "+", player);
 
                         break;
                     case "s":
 
                         gameDifficulty = ChooseDifficulty();
-                        gameType = Models.GameType.Substraction;
-                        gameEngine.StartGame(gameType, gameDifficulty, '-', player);
+                        gameType = GameType.Substraction;
+                        gameEngine.StartGame(gameType, gameDifficulty, "-", player);
 
                         break;
                     case "m":
 
                         gameDifficulty = ChooseDifficulty();
-                        gameType = Models.GameType.Multiplication;
-                        gameEngine.StartGame(gameType, gameDifficulty, '*', player);
+                        gameType = GameType.Multiplication;
+                        gameEngine.StartGame(gameType, gameDifficulty, "*", player);
 
                         break;
                     case "d":
 
                         gameDifficulty = ChooseDifficulty();
-                        gameType = Models.GameType.Division;
-                        gameEngine.StartGame(gameType, gameDifficulty, '/', player);
+                        gameType = GameType.Division;
+                        gameEngine.StartGame(gameType, gameDifficulty, "/", player);
 
                         break;
                     case "q":
@@ -111,15 +110,15 @@ namespace MathGame
                 switch (gameDifficulty)
                 {
                     case "e":
-                        difficulty = Models.GameDifficulty.Easy;
+                        difficulty = GameDifficulty.Easy;
                         input = true;
                         break;
                     case "m":
-                        difficulty = Models.GameDifficulty.Medium;
+                        difficulty = GameDifficulty.Medium;
                         input = true;
                         break;
                     case "h":
-                        difficulty = Models.GameDifficulty.Hard;
+                        difficulty = GameDifficulty.Hard;
                         input = true;
                         break;
                     default:
